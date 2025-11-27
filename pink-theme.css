@@ -1,0 +1,26 @@
+.pink {
+  background: linear-gradient(135deg, #ffe0e9, #ffffff, #f8bbda);
+  color: #333333;
+
+  --bg-color: linear-gradient(135deg, #ffe0e9, #ffffff, #f8bbda);
+  --text-color: #333333;
+  --main-info-color: #e91e63;
+  --accent-color: #f06292;
+
+  --card-bg-color: rgba(255, 255, 255, 0.85);
+  --card-border-color: rgba(233, 30, 99, 0.5);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.95);
+
+  --button-bg: var(--main-info-color);
+  --button-text-color: #ffffff;
+}
+
+.pink #search-input {
+  border-color: var(--card-border-color);
+}
+
+.pink .link-item {
+  background: var(--input-bg);
+  border-color: var(--card-border-color);
+}

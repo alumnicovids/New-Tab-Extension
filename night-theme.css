@@ -1,0 +1,26 @@
+.night {
+  background: linear-gradient(135deg, #0f1c2d, #1a3350);
+  color: #e0e0e0;
+
+  --bg-color: linear-gradient(135deg, #0f1c2d, #1a3350);
+  --text-color: #e0e0e0;
+  --main-info-color: #80deea;
+  --accent-color: #4dd0e1;
+
+  --card-bg-color: rgba(255, 255, 255, 0.08);
+  --card-border-color: rgba(77, 208, 225, 0.5);
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+  --input-bg: rgba(0, 0, 0, 0.3);
+
+  --button-bg: var(--accent-color);
+  --button-text-color: #0f1c2d;
+}
+
+.night #search-input {
+  border-color: var(--card-border-color);
+}
+
+.night .link-item {
+  background: var(--input-bg);
+  border-color: var(--card-border-color);
+}
