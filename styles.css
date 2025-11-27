@@ -58,7 +58,7 @@ h1 {
   color: var(--main-info-color);
   margin: 0;
   flex-grow: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .profile-icon {
@@ -197,6 +197,20 @@ h1 {
 }
 
 .delete-link-btn:hover {
+  transform: scale(1.2);
+}
+
+.edit-link-btn {
+  padding: 3px 6px;
+  font-size: 0.7em;
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  box-shadow: none;
+  transition: transform 0.1s;
+}
+
+.edit-link-btn:hover {
   transform: scale(1.2);
 }
 

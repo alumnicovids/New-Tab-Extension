@@ -10,6 +10,11 @@ const addLinkForm = document.getElementById("add-link-form");
 const linkNameInput = document.getElementById("link-name-input");
 const linkUrlInput = document.getElementById("link-url-input");
 const cancelLinkButton = document.getElementById("cancel-link-btn");
+const modalTitle = document.querySelector(".link-modal h3");
+const saveLinkButton = document.getElementById("save-link-btn");
+
+let isEditMode = false;
+let currentEditId = null;
 
 function updateClock() {
   const now = new Date();
@@ -74,9 +79,9 @@ function updateThemeToggleEmoji(currentTheme) {
   let emoji;
 
   if (nextTheme === "pink") {
-    emoji = "🌸";
-  } else {
     emoji = "🌙";
+  } else {
+    emoji = "🌸";
   }
   themeToggleButton.textContent = emoji;
   themeToggleButton.title = `Ganti ke ${
@@ -108,11 +113,16 @@ function createLinkElement(link) {
 
   li.innerHTML = `
         <a href="${link.url}" target="_blank">🌐 ${link.name}</a>
+        <button class="edit-link-btn" data-id="${link.id}">✏️</button>
         <button class="delete-link-btn" data-id="${link.id}">❌</button>
     `;
 
   li.querySelector(".delete-link-btn").addEventListener("click", (e) => {
     deleteLink(link.id);
+  });
+
+  li.querySelector(".edit-link-btn").addEventListener("click", () => {
+    startEditLink(link.id);
   });
 
   return li;
@@ -140,9 +150,30 @@ function showModal() {
 function hideModal() {
   modalOverlay.style.display = "none";
   addLinkForm.reset();
+
+  isEditMode = false;
+  currentEditId = null;
+  modalTitle.textContent = "Tambah Link Cepat";
+  saveLinkButton.textContent = "Simpan";
 }
 
-function handleAddLink(e) {
+function startEditLink(id) {
+  isEditMode = true;
+  currentEditId = id;
+
+  const linkToEdit = quickLinks.find((link) => link.id === id);
+  if (!linkToEdit) return;
+
+  modalTitle.textContent = "Edit Link Cepat";
+  saveLinkButton.textContent = "Perbarui";
+
+  linkNameInput.value = linkToEdit.name;
+  linkUrlInput.value = linkToEdit.url;
+
+  showModal();
+}
+
+function handleSaveLink(e) {
   e.preventDefault();
 
   const name = linkNameInput.value.trim();
@@ -154,13 +185,22 @@ function handleAddLink(e) {
     url = "https://" + url;
   }
 
-  const newLink = {
-    id: Date.now(),
-    name: name,
-    url: url,
-  };
+  if (isEditMode) {
+    quickLinks = quickLinks.map((link) => {
+      if (link.id === currentEditId) {
+        return { id: currentEditId, name, url };
+      }
+      return link;
+    });
+  } else {
+    const newLink = {
+      id: Date.now(),
+      name: name,
+      url: url,
+    };
+    quickLinks.push(newLink);
+  }
 
-  quickLinks.push(newLink);
   saveLinks();
   renderLinks();
   hideModal();
@@ -174,9 +214,9 @@ function deleteLink(id) {
   }
 }
 
-addLinkButton.addEventListener("click", showModal);
+addLinkButton.addEventListener("click", hideModal);
 cancelLinkButton.addEventListener("click", hideModal);
-addLinkForm.addEventListener("submit", handleAddLink);
+addLinkForm.addEventListener("submit", handleSaveLink);
 modalOverlay.addEventListener("click", (e) => {
   if (e.target === modalOverlay) {
     hideModal();
