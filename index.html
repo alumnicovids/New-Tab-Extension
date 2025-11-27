@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal New Tab ✨</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="pink-theme.css" />
+    <link rel="stylesheet" href="night-theme.css" />
+  </head>
+  <body class="night">
+    <header>
+      <h1>Asmara Personal New Tab</h1>
+    </header>
+
+    <div class="main-container">
+      <button class="theme-toggle" id="theme-toggle" title="Ganti Tema">
+        🌙
+      </button>
+
+      <div id="clock"></div>
+      <div id="greeting">Selamat Pagi! 🌅</div>
+
+      <section class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="🔍 Cari di Google..."
+        />
+        <button id="search-btn">GO</button>
+      </section>
+    </div>
+
+    <div class="link-container">
+      <ul class="link-list">
+        <!-- berisakan link yang akan ditambbahkan pada input link-input -->
+      </ul>
+      <input type="submit" id="add-link-btn" value="➕ Add Link" />
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
