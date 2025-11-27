@@ -79,9 +79,9 @@ function updateThemeToggleEmoji(currentTheme) {
   let emoji;
 
   if (nextTheme === "pink") {
-    emoji = "🌙";
-  } else {
     emoji = "🌸";
+  } else {
+    emoji = "🌙";
   }
   themeToggleButton.textContent = emoji;
   themeToggleButton.title = `Ganti ke ${
@@ -214,7 +214,11 @@ function deleteLink(id) {
   }
 }
 
-addLinkButton.addEventListener("click", hideModal);
+addLinkButton.addEventListener("click", () => {
+  hideModal();
+  showModal();
+});
+
 cancelLinkButton.addEventListener("click", hideModal);
 addLinkForm.addEventListener("submit", handleSaveLink);
 modalOverlay.addEventListener("click", (e) => {
