@@ -12,9 +12,12 @@ const linkUrlInput = document.getElementById("link-url-input");
 const cancelLinkButton = document.getElementById("cancel-link-btn");
 const modalTitle = document.querySelector(".link-modal h3");
 const saveLinkButton = document.getElementById("save-link-btn");
+const launchAppButton = document.getElementById("launch-app-btn");
 
 let isEditMode = false;
 let currentEditId = null;
+
+const EXTENSION_ID_DATA_KEUANGAN = "gchdndkbbogfdppngekmaemgalmcibkb";
 
 function updateClock() {
   const now = new Date();
@@ -79,9 +82,9 @@ function updateThemeToggleEmoji(currentTheme) {
   let emoji;
 
   if (nextTheme === "pink") {
-    emoji = "🌸";
-  } else {
     emoji = "🌙";
+  } else {
+    emoji = "🌸";
   }
   themeToggleButton.textContent = emoji;
   themeToggleButton.title = `Ganti ke ${
@@ -225,6 +228,19 @@ modalOverlay.addEventListener("click", (e) => {
   if (e.target === modalOverlay) {
     hideModal();
   }
+});
+
+launchAppButton.addEventListener("click", () => {
+  if (
+    EXTENSION_ID_DATA_KEUANGAN === "PASTE_ID_EKSTENSI_DATA_KEUANGAN_DI_SINI"
+  ) {
+    alert(
+      "PERINGATAN: Harap ganti EXTENSION_ID_DATA_KEUANGAN di script.js dengan ID Ekstensi Data Keuangan yang valid."
+    );
+    return;
+  }
+  const targetUrl = `chrome-extension://${EXTENSION_ID_DATA_KEUANGAN}/html/index.html`;
+  chrome.tabs.create({ url: targetUrl });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

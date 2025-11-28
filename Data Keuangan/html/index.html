@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/night-theme.css" />
+    <link rel="stylesheet" href="../css/pink-theme.css" />
+    <title>Financial Data 💰</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  </head>
+  <body class="night">
+    <header class="site-header">
+      <h1>Financial Data 📊</h1>
+      <button class="theme-toggle">🌙 Night Theme</button>
+    </header>
+
+    <nav class="side-nav">
+      <ul>
+        <li><a href="#input-card" class="active-link">📝 Input</a></li>
+        <li><a href="#list-card">📜 History</a></li>
+        <li><a href="#manage-card">📈 Summary</a></li>
+        <li><a href="#whislist-card">✨ Wishlist</a></li>
+      </ul>
+    </nav>
+
+    <main class="main-content">
+      <section class="input-card active-card" id="input-card">
+        <h2>📝 Input Transaction</h2>
+        <form id="input-form">
+          <input type="date" id="input-date" required />
+          <select id="input-type" required>
+            <option value="" disabled selected>✨ Type</option>
+            <option value="Pemasukan">💰 Income</option>
+            <option value="Pengeluaran">💸 Expense</option>
+            <option value="Tarik Tunai">🏧 Withdrawal</option>
+            <option value="E-Wallet">📱 E-Wallet Transfer</option>
+          </select>
+          <input
+            type="number"
+            id="input-total"
+            placeholder="Rp Amount..."
+            required
+          />
+          <select id="input-category" required>
+            <option value="" disabled selected>🏷️ Category</option>
+            <option value="Food & Drink">🍔 Food & Drink</option>
+            <option value="Hangout & Snacks">☕ Hangout</option>
+            <option value="Transportation">🚗 Transport</option>
+            <option value="Shopping & Dorm Needs">🛍️ Shopping</option>
+            <option value="Credit & Internet">📡 Data/Internet</option>
+            <option value="Entertainment">🎬 Entertainment</option>
+            <option value="Family & Social">👨‍👩‍👧‍👦 Social</option>
+            <option value="Education">📚 Education</option>
+            <option value="Finance">🏦 Finance</option>
+            <option value="Others">🤷 Others</option>
+          </select>
+          <input
+            type="text"
+            id="input-description"
+            placeholder="📝 Description..."
+          />
+          <select id="input-metode" required>
+            <option value="" disabled selected>💳 Method</option>
+            <option value="Debit">💳 Debit</option>
+            <option value="Tunai">💵 Cash</option>
+            <option value="E-Wallet">📱 E-Wallet</option>
+          </select>
+          <button type="submit">✅ Add Transaction</button>
+        </form>
+      </section>
+
+      <section class="list-card" id="list-card">
+        <h2>📜 Transaction History</h2>
+        <div class="search-data">
+          <input type="text" id="search-data" placeholder="🔍 Search..." />
+        </div>
+        <ul id="transaction-list"></ul>
+      </section>
+
+      <section class="manage-card" id="manage-card">
+        <h2>📈 Management & Summary</h2>
+        <div class="manage-view">
+          <select id="select-month"></select>
+          <select id="select-year"></select>
+        </div>
+
+        <div class="financial-summary">
+          <h3>💰 Balance</h3>
+          <p id="sum-balance">
+            <span class="label">Total:</span><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-cash">
+            <span class="label">Cash:</span><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-debit">
+            <span class="label">Debit:</span><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-ewallet">
+            <span class="label">E-Wallet:</span><span class="value">Rp 0</span>
+          </p>
+        </div>
+
+        <div class="expense-category-summary">
+          <h3>💸 Category Expense Total</h3>
+          <p id="sum-food-drink">
+            <span class="label">Food & Drink:</span
+            ><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-hangout">
+            <span class="label">Hangout & Snacks:</span
+            ><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-transportation">
+            <span class="label">Transportation:</span
+            ><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-shopping-dorm">
+            <span class="label">Shopping & Dorm Needs:</span
+            ><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-entertainment">
+            <span class="label">Entertainment:</span
+            ><span class="value">Rp 0</span>
+          </p>
+        </div>
+        <div class="flow-summary">
+          <h3>🌊 Flow</h3>
+          <p id="sum-income">
+            <span class="label">In:</span><span class="value">Rp 0</span>
+          </p>
+          <p id="sum-expense">
+            <span class="label">Out:</span><span class="value">Rp 0</span>
+          </p>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="financial-chart"></canvas>
+        </div>
+      </section>
+
+      <section class="whislist-card" id="whislist-card">
+        <h2>✨ Wishlist</h2>
+        <div>
+          <input type="text" id="wish-item" placeholder="🎁 Item name..." />
+          <input
+            type="number"
+            id="wish-price"
+            placeholder="🎯 Target price..."
+          />
+          <button id="add-wish-btn">Add</button>
+        </div>
+        <ul id="whislist-list"></ul>
+      </section>
+    </main>
+    <script type="module" src="../javascript/app.js"></script>
+    <script src="../javascript/chart.js"></script>
+  </body>
+</html>

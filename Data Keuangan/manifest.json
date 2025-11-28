@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Data Keuangan New Tab",
+  "name": "Data Keuangan App (Utama)",
   "version": "1.0",
-  "description": "Asmara Personal New Tab",
-  "chrome_url_overrides": {
-    "newtab": "interface.html"
+  "description": "Aplikasi pencatatan keuangan pribadi.",
+  "action": {
+    "default_popup": "html/index.html"
   },
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self';"
