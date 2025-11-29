@@ -114,11 +114,24 @@ function createLinkElement(link) {
   li.className = "link-item";
   li.dataset.id = link.id;
 
-  li.innerHTML = `
-        <a href="${link.url}" target="_blank">🌐 ${link.name}</a>
+  try {
+    const url = new URL(link.url);
+    const domain = url.hostname;
+    const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=32`;
+
+    li.innerHTML = `
+        <img class="link-favicon" src="${faviconUrl}" alt="${link.name} Logo">
+        <a href="${link.url}" target="_blank">${link.name}</a>
         <button class="edit-link-btn" data-id="${link.id}">✏️</button>
         <button class="delete-link-btn" data-id="${link.id}">❌</button>
     `;
+  } catch (e) {
+    li.innerHTML = `
+        <a href="${link.url}" target="_blank">🌐 ${link.name} (URL error)</a>
+        <button class="edit-link-btn" data-id="${link.id}">✏️</button>
+        <button class="delete-link-btn" data-id="${link.id}">❌</button>
+    `;
+  }
 
   li.querySelector(".delete-link-btn").addEventListener("click", (e) => {
     deleteLink(link.id);

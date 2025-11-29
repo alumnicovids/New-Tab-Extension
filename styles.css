@@ -180,6 +180,13 @@ h1 {
   transition: all var(--transition-speed);
 }
 
+.link-favicon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 2px;
+}
+
 .link-item a {
   text-decoration: none;
   color: var(--text-color);
