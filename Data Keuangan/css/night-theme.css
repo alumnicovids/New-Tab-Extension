@@ -1,6 +1,6 @@
 .night {
   background: linear-gradient(135deg, #021a30, #1b3a5b, #021a30);
-  color: #e3f2fd; /* Very light blue text for contrast */
+  color: #e3f2fd;
 
   --bg-color: transparent;
   --text-color: #e3f2fd;

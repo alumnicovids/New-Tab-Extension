@@ -1,8 +1,8 @@
 .night {
-  background: linear-gradient(135deg, #0f1c2d, #28535a, #1a3350);
+  background: linear-gradient(135deg, #021a30, #1b3a5b, #021a30);
   color: #e0e0e0;
 
-  --bg-color: linear-gradient(135deg, #0f1c2d, #28535a, #1a3350);
+  --bg-color: linear-gradient(135deg, #021a30, #1b3a5b, #021a30);
   --text-color: #e0e0e0;
   --main-info-color: #80deea;
   --accent-color: #4dd0e1;
