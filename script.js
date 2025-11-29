@@ -113,6 +113,7 @@ function createLinkElement(link) {
   const li = document.createElement("li");
   li.className = "link-item";
   li.dataset.id = link.id;
+  li.setAttribute("draggable", "true");
 
   try {
     const url = new URL(link.url);
@@ -156,6 +157,8 @@ function renderLinks() {
   quickLinks.forEach((link) => {
     linkList.appendChild(createLinkElement(link));
   });
+
+  addDragDropListeners();
 }
 
 function showModal() {
@@ -228,6 +231,89 @@ function deleteLink(id) {
     saveLinks();
     renderLinks();
   }
+}
+
+let draggedItem = null;
+
+function handleDragStart(e) {
+  draggedItem = this;
+  e.dataTransfer.effectAllowed = "move";
+  e.dataTransfer.setData("text/html", this.innerHTML);
+  setTimeout(() => {
+    this.classList.add("dragging");
+  }, 0);
+}
+
+function handleDragEnd(e) {
+  this.classList.remove("dragging");
+  draggedItem = null;
+  updateLinkOrder();
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = "move";
+  const bounding = this.getBoundingClientRect();
+  const offset = bounding.y + bounding.height / 2;
+
+  if (e.clientY > offset) {
+    this.classList.add("after");
+    this.classList.remove("before");
+  } else {
+    this.classList.add("before");
+    this.classList.remove("after");
+  }
+}
+
+function handleDragLeave(e) {
+  this.classList.remove("before", "after");
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  this.classList.remove("before", "after");
+
+  if (draggedItem !== this) {
+    const allItems = Array.from(linkList.querySelectorAll(".link-item"));
+    const draggedIndex = allItems.indexOf(draggedItem);
+    const targetIndex = allItems.indexOf(this);
+
+    if (
+      e.clientY >
+      this.getBoundingClientRect().y + this.getBoundingClientRect().height / 2
+    ) {
+      linkList.insertBefore(draggedItem, this.nextSibling);
+    } else {
+      linkList.insertBefore(draggedItem, this);
+    }
+  }
+}
+
+function addDragDropListeners() {
+  const items = linkList.querySelectorAll(".link-item");
+  items.forEach((item) => {
+    item.addEventListener("dragstart", handleDragStart);
+    item.addEventListener("dragend", handleDragEnd);
+    item.addEventListener("dragover", handleDragOver);
+    item.addEventListener("dragleave", handleDragLeave);
+    item.addEventListener("drop", handleDrop);
+  });
+}
+
+function updateLinkOrder() {
+  const newOrder = [];
+  const items = linkList.querySelectorAll(".link-item");
+
+  items.forEach((item) => {
+    const id = parseInt(item.dataset.id);
+    const link = quickLinks.find((l) => l.id === id);
+    if (link) {
+      newOrder.push(link);
+    }
+  });
+
+  quickLinks = newOrder;
+  saveLinks();
 }
 
 addLinkButton.addEventListener("click", () => {

@@ -164,7 +164,7 @@ h1 {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   gap: 15px;
   padding: 10px 0 0;
 }
@@ -178,6 +178,23 @@ h1 {
   gap: 8px;
   border: 1px var(--border-style) var(--card-border-color);
   transition: all var(--transition-speed);
+  width: calc(33.33% - 10px);
+  flex-shrink: 0;
+  cursor: grab;
+}
+
+.link-item.dragging {
+  opacity: 0.5;
+  border: 2px dashed var(--accent-color);
+  background: none;
+}
+
+.link-item.before {
+  border-top: 2px solid var(--accent-color);
+}
+
+.link-item.after {
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .link-favicon {
@@ -185,12 +202,33 @@ h1 {
   height: 18px;
   object-fit: contain;
   border-radius: 2px;
+  flex-shrink: 0;
 }
 
 .link-item a {
   text-decoration: none;
   color: var(--text-color);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.edit-link-btn {
+  margin-left: auto;
+  padding: 3px 6px;
+  font-size: 0.7em;
+  background: none;
+  border: none;
+  color: var(--accent-color);
+  box-shadow: none;
+  transition: transform 0.1s;
+  flex-shrink: 0;
+}
+
+.edit-link-btn:hover {
+  transform: scale(1.2);
 }
 
 .delete-link-btn {
@@ -201,23 +239,10 @@ h1 {
   color: #e91e63;
   box-shadow: none;
   transition: transform 0.1s;
+  flex-shrink: 0;
 }
 
 .delete-link-btn:hover {
-  transform: scale(1.2);
-}
-
-.edit-link-btn {
-  padding: 3px 6px;
-  font-size: 0.7em;
-  background: none;
-  border: none;
-  color: var(--accent-color);
-  box-shadow: none;
-  transition: transform 0.1s;
-}
-
-.edit-link-btn:hover {
   transform: scale(1.2);
 }
 
@@ -367,4 +392,13 @@ h1 {
   header {
     padding: 15px 0 10px;
   }
+  .link-item {
+    width: calc(50% - 7.5px);
+  }
+}
+
+.link-list::after {
+  content: "";
+  width: calc(33.33% - 10px);
+  height: 0;
 }
