@@ -7,15 +7,15 @@
     <title>Personal New Tab ✨</title>
   </head>
   <body>
-    <aside id="nav-container" class="nav-container">
-      <nav id="nav-list" class="nav-list">
-        <a href="#home-site">🏡</a>
-        <a href="#todo-site">✅</a>
-      </nav>
-    </aside>
+    <nav id="nav-container" class="nav-container">
+      <ul id="nav-list" class="nav-list">
+        <li><a href="#home-site">🏡</a></li>
+        <li><a href="#todo-site">✅</a></li>
+      </ul>
+    </nav>
 
     <div class="website-container">
-      <div id="home-site" class="home-site">
+      <div id="home-site" class="home-site active-site">
         <div class="home-main-container">
           <button id="theme-toggle-btn">🎨</button>
           <div id="clock"></div>
@@ -42,7 +42,12 @@
           <ul class="link-list"></ul>
         </div>
 
-        <div class="modal-overlay" id="modal-overlay">
+        <div
+          class="modal-overlay"
+          id="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+        >
           <div class="link-modal">
             <h3>Add Quick Link</h3>
             <form id="add-link-form">
@@ -88,7 +93,7 @@
 
       <div id="todo-site" class="todo-site">
         <div class="todo-container">
-          <section class="card">
+          <section class="card todo-control-group">
             <h2>➕ Add New Task</h2>
             <form id="todo-form" class="todo-form">
               <input
@@ -100,36 +105,35 @@
               <button type="submit" id="todo-input-btn">Add Task ✨</button>
               <p id="error-message" class="error-message"></p>
             </form>
-          </section>
 
-          <section id="todo-stat" class="todo-stat">
-            <p>Total Task: <span id="stat-total">0</span> 📊</p>
-            <p>Task Done: <span id="stat-completed">0</span> ✅</p>
-            <p>Not Done Yet: <span id="stat-active">0</span> ⏳</p>
-          </section>
+            <section id="todo-stat" class="todo-stat">
+              <p>Total Task: <span id="stat-total">0</span> 📊</p>
+              <p>Task Done: <span id="stat-completed">0</span> ✅</p>
+              <p>Not Done Yet: <span id="stat-active">0</span> ⏳</p>
+            </section>
 
-          <section id="todo-filters" class="todo-filters">
-            <button data-filters="active" id="btn-filter-active">
-              Not Done Yet ⏳
-            </button>
-            <button data-filters="completed" id="btn-filter-completed">
-              Done ✅
-            </button>
-            <button id="sort-by-due-date" data-sort-order="asc">
-              Sort Deadline 🗓️
-            </button>
-          </section>
+            <section id="todo-filters" class="todo-filters">
+              <button data-filters="active" id="btn-filter-active">
+                Not Done Yet ⏳
+              </button>
+              <button data-filters="completed" id="btn-filter-completed">
+                Done ✅
+              </button>
+              <button id="sort-by-due-date" data-sort-order="asc">
+                Sort Deadline 🗓️
+              </button>
+            </section>
 
-          <section id="todo-search-wrapper" class="todo-search-wrapper">
-            <span>🔍</span>
-            <input
-              type="text"
-              id="todo-search-input"
-              placeholder="Search for task name or deadline(dd-mm-yyyy)..."
-            />
+            <section id="todo-search-wrapper" class="todo-search-wrapper">
+              <span>🔍</span>
+              <input
+                type="text"
+                id="todo-search-input"
+                placeholder="Search for task name or deadline(dd-mm-yyyy)..."
+              />
+            </section>
           </section>
-
-          <section class="class">
+          <section class="card">
             <h2>📋 Your To-Do List</h2>
             <ul id="todo-list" class="todo-list"></ul>
           </section>
@@ -143,7 +147,7 @@
       </div>
     </div>
 
-    <div id="delete-modal" class="modal">
+    <div id="delete-modal" class="modal" role="dialog" aria-modal="true">
       <div class="modal-content">
         <h2>🗑️ Confirm Delete</h2>
         <p>Are you sure you want to delete this task?</p>
@@ -154,7 +158,7 @@
       </div>
     </div>
 
-    <div id="edit-modal" class="modal">
+    <div id="edit-modal" class="modal" role="dialog" aria-modal="true">
       <div class="modal-content">
         <h2>✏️ Edit Task</h2>
         <form id="edit-form">
