@@ -18,7 +18,7 @@
   --text-color: var(--secondary-color);
   --main-info-color: var(--accent-color);
   --button-bg: var(--accent-color);
-  --button-text-color: #ffffff;
+  --button-text-color: var(--secondary-color);
   --shadow-color: rgba(31, 38, 135, 0.15);
   --glass-border-light: rgba(255, 255, 255, 0.5);
   --glass-border-dark: rgba(255, 255, 255, 0.2);
@@ -75,14 +75,22 @@ button:hover {
 =====================================*/
 
 #nav-container {
-  width: 60px;
-  background-color: var(--secondary-color);
+  background: rgba(255, 255, 255, 0.15);
   padding: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 0 10px var(--shadow-color);
   z-index: 100;
+  backdrop-filter: blur(10px);
+  border-right: 1px solid var(--glass-border-dark);
+  border-radius: 50px;
+  height: fit-content;
+  align-self: center;
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 #nav-list {
@@ -307,6 +315,15 @@ button:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.link-favicon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
 
 .delete-link-btn,
@@ -352,7 +369,7 @@ button:hover {
 }
 
 .card h2 {
-  color: var(--main-info-color);
+  color: var(--secondary-color);
   margin-bottom: 15px;
 }
 
@@ -426,7 +443,7 @@ button:hover {
   font-size: 1.2em;
   display: block;
   margin-top: 5px;
-  color: var(--main-info-color);
+  color: var(--secondary-color);
 }
 
 #todo-filters {
@@ -473,7 +490,6 @@ button:hover {
   width: 100%;
   padding: 12px 15px 12px 45px;
   border-radius: 20px;
-  /* Glass input style */
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.3),

@@ -253,6 +253,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
+    const getFaviconUrl = (url) => {
+      try {
+        const domain = new URL(url).hostname;
+        return `https://s2.googleusercontent.com/s2/favicons?domain=${domain}&sz=32`;
+      } catch (e) {
+        return "";
+      }
+    };
+
     const renderLinks = () => {
       if (!linkList) return;
 
@@ -269,13 +278,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const listItem = document.createElement("li");
         listItem.classList.add("link-list-item");
 
+        const faviconUrl = getFaviconUrl(link.url);
+
         listItem.innerHTML = `
-                    <a href="${link.url}" class="link-item" target="_blank" title="${link.url}">
-                        ${link.name}
-                    </a>
-                    <button data-id="${link.id}" class="edit-link-btn" title="Edit Link">✏️</button>
-                    <button data-id="${link.id}" class="delete-link-btn" title="Delete Link">❌</button>
-                `;
+      <a href="${link.url}" class="link-item" target="_blank" title="${
+          link.url
+        }">
+        ${
+          faviconUrl
+            ? `<img src="${faviconUrl}" alt="${link.name} icon" class="link-favicon">`
+            : "🔗"
+        }
+        ${link.name}
+      </a>
+      <button data-id="${
+        link.id
+      }" class="edit-link-btn" title="Edit Link">✏️</button>
+      <button data-id="${
+        link.id
+      }" class="delete-link-btn" title="Delete Link">❌</button>
+    `;
 
         linkList.appendChild(listItem);
       });
