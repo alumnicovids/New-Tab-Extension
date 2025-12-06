@@ -11,7 +11,7 @@
 :root {
   --font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --transition-speed: 0.3s;
-  --max-width: 800px;
+  --max-width: 900px;
   --dominant-color: #eee7ce;
   --secondary-color: #40826d;
   --accent-color: #40826d;
@@ -103,6 +103,7 @@ button:hover {
 
 #nav-list li a:hover {
   background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .website-container {
@@ -182,7 +183,7 @@ button:hover {
   font-size: 5rem;
   font-weight: 700;
   margin-bottom: 5px;
-  color: var(--main-info-color);
+  color: var(--secondary-color);
 }
 
 #gretting {
@@ -197,8 +198,8 @@ button:hover {
   align-items: center;
   position: relative;
   padding-left: 0;
-  width: 80%;
-  max-width: 650px;
+  width: 100%;
+  max-width: 750px;
   margin: 0 auto 30px;
 }
 
@@ -215,7 +216,7 @@ button:hover {
 #home-search-input {
   flex-grow: 1;
   padding: 15px 20px 15px 45px;
-  border-radius: 10px;
+  border-radius: 20px;
 
   background: linear-gradient(
     135deg,
@@ -280,19 +281,44 @@ button:hover {
   padding: 10px 0 0;
 }
 
-.link-item {
-  display: block;
-  flex: 1 1 30%;
-  min-width: 150px;
+.link-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  border: 1px solid var(--glass-border-light);
-  transition: all var(--transition-speed);
-  text-decoration: none;
+  margin-bottom: 10px;
+  background-color: var(--dominant-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.link-list-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.link-item {
+  flex-grow: 1;
   color: var(--text-color);
+  text-decoration: none;
   font-weight: 500;
-  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+
+.delete-link-btn,
+.edit-link-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 5px;
+  margin-left: 5px;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 /*=====================================
@@ -527,7 +553,7 @@ button:hover {
 }
 
 /*=====================================
-  5. MODALS & SETTINGS PANEL 
+  5. MODALS & SETTINGS PANEL
 =====================================*/
 
 .modal-overlay,
@@ -553,7 +579,8 @@ button:hover {
 .modal-overlay.active,
 #delete-modal.active,
 #edit-modal.active,
-#custom-alert-modal.active {
+#custom-alert-modal.active,
+.custom-modal.toast-modal.active {
   opacity: 1;
   visibility: visible;
 }
@@ -627,6 +654,10 @@ button:hover {
   background: none;
   align-items: flex-start;
   padding-top: 50px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 #custom-alert-modal .modal-content {
@@ -634,7 +665,10 @@ button:hover {
   backdrop-filter: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   color: white;
-  max-width: 300px;
+
+  width: auto;
+  max-width: 90vw;
+
   padding: 15px 20px;
   font-size: 0.9em;
 }
