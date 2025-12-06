@@ -8,24 +8,46 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll("#nav-list a");
   const sites = document.querySelectorAll(".website-container > div");
 
-  const switchSite = (targetSiteId) => {
+  const switchSite = (targetSiteId, currentLink) => {
     sites.forEach((site) => {
       site.classList.remove("active-site");
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active-nav-link");
     });
 
     const targetSite = document.getElementById(targetSiteId);
     if (targetSite) {
       targetSite.classList.add("active-site");
     }
+
+    if (currentLink) {
+      currentLink.classList.add("active-nav-link");
+    }
   };
 
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
+
       const targetId = link.getAttribute("href").substring(1);
-      switchSite(targetId);
+      switchSite(targetId, e.currentTarget);
     });
   });
+
+  const initialActiveSite = document.querySelector(
+    ".website-container > .active-site"
+  );
+  if (initialActiveSite) {
+    const initialTargetId = initialActiveSite.id;
+    const initialLink = document.querySelector(
+      `#nav-list a[href="#${initialTargetId}"]`
+    );
+    if (initialLink) {
+      initialLink.classList.add("active-nav-link");
+    }
+  }
 
   // ===================================
   // LOGIKA HOME SITE

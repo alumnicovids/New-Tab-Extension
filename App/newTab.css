@@ -104,20 +104,28 @@ button:hover {
   font-size: 1.5rem;
   text-decoration: none;
   color: var(--dominant-color);
-  transition: background-color 0.2s;
-  border-radius: 5px;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, color 0.4s ease,
+    transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 999px;
   margin-bottom: 15px;
 }
 
 #nav-list li a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
+}
+
+#nav-list li a.active-nav-link {
+  transform: scale(1.25);
+  color: var(--text-color);
+  filter: brightness(1.5);
 }
 
 .website-container {
   flex-grow: 1;
+  padding-left: 30px; /* Jaga jarak dari nav-bar */
   position: relative;
   overflow: hidden;
+  height: 100vh; /* Penting untuk menampung elemen absolute */
 }
 
 .home-site,
@@ -294,11 +302,14 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   padding: 10px 15px;
-  margin-bottom: 10px;
-  background-color: var(--dominant-color);
+  margin-bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: var(--border-radius);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
+
+  flex-basis: calc(33.333% - 10px);
+  flex-grow: 1;
 }
 
 .link-list-item:hover {
