@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Asmara personal new tab (Version 3)",
+  "version": "1.0",
+  "description": "Custom new tab page with quick access and finance input.",
+  "permissions": ["storage", "tabs", "declarativeNetRequest", "identity"],
+  "chrome_url_overrides": {
+    "newtab": "App/newTab.html"
+  }
+}

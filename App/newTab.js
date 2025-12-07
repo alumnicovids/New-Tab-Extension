@@ -101,16 +101,15 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // -----------------------------------
-    // 1. CLOCK & GREETING (Kode tetap sama)
+    // 1. CLOCK & GREETING
     // -----------------------------------
     const updateClockAndGreeting = () => {
       const now = new Date();
       const hours = now.getHours();
 
-      const timeString = now.toLocaleTimeString("id-ID", {
+      const timeString = now.toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
-        second: "2-digit",
       });
       if (clockElement) clockElement.textContent = timeString;
 
@@ -131,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateClockAndGreeting, 1000);
 
     // -----------------------------------
-    // 2. SEARCH FUNCTIONALITY (Kode tetap sama)
+    // 2. SEARCH FUNCTIONALITY
     // -----------------------------------
     const handleSearch = (e) => {
       if (e.key === "Enter") {
@@ -159,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // -----------------------------------
-    // 3. SETTINGS PANEL & THEME (Kode tetap sama)
+    // 3. SETTINGS PANEL & THEME
     // -----------------------------------
     const toggleSettingsPanel = () => {
       if (settingsPanel) {
