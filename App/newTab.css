@@ -560,16 +560,22 @@ button:hover {
   flex-direction: column;
   flex-grow: 1;
   margin-right: 15px;
+  overflow: hidden;
+  margin-right: 15px;
 }
 
 .todo-item-info .task-name {
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 3px;
 }
 
 .todo-item-info .due-date {
   font-size: 0.85rem;
   color: var(--main-info-color);
-  opacity: 0.7;
+  opacity: 0.8;
   font-style: italic;
 }
 
@@ -588,16 +594,28 @@ button:hover {
   padding: 5px;
   margin-left: 5px;
   box-shadow: none;
+  transition: transform 0.1s;
 }
 
 .todo-actions .complete-btn {
   color: #2ecc71;
 }
+
 .todo-actions .edit-btn {
   color: var(--accent-color);
 }
+
 .todo-actions .delete-btn {
   color: #e74c3c;
+}
+
+#btn-filter-all.active,
+#btn-filter-active.active,
+#btn-filter-completed.active {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(64, 130, 109, 0.5);
 }
 
 /*=====================================
@@ -699,17 +717,20 @@ button:hover {
 }
 
 #custom-alert-modal {
-  background: none;
-  align-items: flex-start;
-  padding-top: 50px;
+  position: fixed;
   top: 30px;
   left: 50%;
   transform: translateX(-50%);
+  background: none;
+  align-items: flex-start;
+  padding-top: 0;
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  z-index: 999;
+  pointer-events: none;
 }
 
 #custom-alert-modal .modal-content {
-  background: rgba(0, 0, 0, 0.85);
+  background: var(--accent-color);
   backdrop-filter: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   color: white;
@@ -719,6 +740,8 @@ button:hover {
 
   padding: 15px 20px;
   font-size: 0.9em;
+
+  pointer-events: none;
 }
 
 .settings-panel {
