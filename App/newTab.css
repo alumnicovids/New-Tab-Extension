@@ -544,7 +544,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 10px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
@@ -567,6 +567,8 @@ button:hover {
 
 .todo-item-info .task-name {
   font-weight: 600;
+  font-size: 1rem;
+  font-family: "Times New Roman", serif;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -575,8 +577,7 @@ button:hover {
 
 .todo-item-info .due-date {
   font-size: 0.85rem;
-  color: var(--main-info-color);
-  opacity: 0.8;
+  color: var(--accent-color);
   font-style: italic;
 }
 
